@@ -1,6 +1,6 @@
 Feature: verify the amazon page
 
-  Scenario: Search for a product and verif
+  Scenario: Search for a product add to cart and verify the same in cart page
     Given user is in onBoarding screen
     When login with valid user credentials
     And user navigates to home page after successful login
