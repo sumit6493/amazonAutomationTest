@@ -1,18 +1,31 @@
 package com.amazon.utils;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigProperties {
     private static ConfigProperties _instance = null;
     private Properties properties;
 
-    private ConfigProperties() throws RuntimeException {
-        properties = new Properties();
+    private final String path = System.getProperty("user.dir")+"/src/test/resources/config/test.properties";
+
+    public ConfigProperties() throws RuntimeException {
+        BufferedReader reader;
         try {
-            properties.load(getClass().getClassLoader().getResourceAsStream("test.config"));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            reader = new BufferedReader(new FileReader(path));
+            properties = new Properties();
+            try {
+                properties.load(reader);
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("property file did NOT found at " + path);
         }
     }
 
@@ -31,25 +44,7 @@ public class ConfigProperties {
         return properties.getProperty("device_name");
     }
 
-    public String getAppPath() {
-        String testEnv = properties.getProperty("app_path");
-        String application = null;
-        String app_path = properties.getProperty("application_path");
-        if (testEnv.equalsIgnoreCase("local")) {
-            File appFile = new File(app_path);
-            application = appFile.getAbsolutePath();
-        } else {
-            application = app_path;
-        }
-        return application;
-    }
-
     public String getDeviceId() {
-        return properties.getProperty("device_platform");
+        return properties.getProperty("device_ID");
     }
-
-    public String getOsVersion() {
-        return properties.getProperty("device.os.version");
-    }
-
 }
