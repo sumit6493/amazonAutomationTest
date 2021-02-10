@@ -73,8 +73,7 @@ public class HomeScreenSteps extends DriverFactory  {
 
     @Then("^user can see same product in cart page$")
     public void userCanSeeSameProductInCartPage() {
-
-        Assert.assertEquals(homeScreenObjects.cartItemName.getAttribute("content-desc"), itemName);
-        Assert.assertEquals(homeScreenObjects.cartItemPrice.getText(), itemPrice);
+        Assert.assertEquals("cart Item name is NOT as search result page", homeScreenObjects.cartItemName.getAttribute("content-desc"), itemName);
+        Assert.assertEquals("cart Item price is NOT as search result page", homeScreenObjects.cartItemPrice.getText(), itemPrice);
     }
 }
