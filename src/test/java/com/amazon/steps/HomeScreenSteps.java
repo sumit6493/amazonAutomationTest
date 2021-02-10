@@ -56,8 +56,8 @@ public class HomeScreenSteps extends DriverFactory  {
     public void selectItemFromList() {
         Random random = new Random();
         int index = random.nextInt(4);
-        itemName = homeScreenObjects.itemNames.get(index).getText();
-        itemPrice = homeScreenObjects.itemPrices.get(index).getAttribute("content-desc");
+        itemName = homeScreenObjects.itemNames.get(1).getText();
+        itemPrice = homeScreenObjects.itemPrices.get(1).getAttribute("content-desc");
         homeScreenObjects.itemNames.get(index).click();
     }
 

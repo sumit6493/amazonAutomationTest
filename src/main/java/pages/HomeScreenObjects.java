@@ -33,11 +33,11 @@ public class HomeScreenObjects extends BasePage {
     public List<WebElement> itemPrices;
 
     @WithTimeout(time = Constants.DEFAULT_EXTENDED_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(id = "add-to-cart-button")
+    @AndroidFindBy(xpath = "//android.view.View[2]/android.widget.Button")
     public WebElement addToCartBtn;
 
     @WithTimeout(time = Constants.DEFAULT_EXTENDED_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(id = "chrome_action_bar_cart_count")
+    @AndroidFindBy(id = "action_bar_cart_image")
     public WebElement cartIcon;
 
     @WithTimeout(time = Constants.DEFAULT_EXTENDED_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)

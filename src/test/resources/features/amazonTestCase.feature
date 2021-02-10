@@ -1,4 +1,4 @@
-Feature: verify the amazon page
+Feature: Amazon page case
 
   Scenario: Search for a product add to cart and verify the same in cart page
     Given user is in onBoarding screen
