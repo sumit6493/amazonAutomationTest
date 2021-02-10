@@ -10,6 +10,7 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.junit.Assert;
 import pages.HomeScreenObjects;
+import pages.LoginScreenObjects;
 
 import java.util.Random;
 
@@ -22,20 +23,21 @@ public class HomeScreenSteps extends DriverFactory  {
     String itemPrice;
 
     HomeScreenObjects homeScreenObjects = new HomeScreenObjects(driver);
+    LoginScreenObjects loginScreenObjects = new LoginScreenObjects(driver);
 
 
     @Given("^user is in onBoarding screen$")
     public void userIsInOnBoardingScreen() {
-        homeScreenObjects.onBoardingLogo.isDisplayed();
+        loginScreenObjects.onBoardingLogo.isDisplayed();
     }
 
     @When("^login with valid user credentials$")
     public void loginWithValidUserID() throws InterruptedException {
-        homeScreenObjects.signInButton.click();
-        waitForElementClickable(driver,homeScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS ).sendKeys(MOBILE_NUMBER);
-        homeScreenObjects.continueButton.click();
-        waitForElementClickable(driver,homeScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS ).sendKeys(PASSWORD);
-        homeScreenObjects.submitButton.click();
+        loginScreenObjects.signInButton.click();
+        waitForElementClickable(driver,loginScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS ).sendKeys(MOBILE_NUMBER);
+        loginScreenObjects.continueButton.click();
+        waitForElementClickable(driver,loginScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS ).sendKeys(PASSWORD);
+        loginScreenObjects.submitButton.click();
     }
 
     @And("^user navigates to home page after successful login$")

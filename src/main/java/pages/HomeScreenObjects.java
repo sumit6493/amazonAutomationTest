@@ -16,30 +16,6 @@ public class HomeScreenObjects extends BasePage {
        super(driver);
    }
 
-    @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(id = "sso_splash_logo")
-    public WebElement onBoardingLogo;
-
-    @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(id = "sign_in_button")
-    public WebElement signInButton;
-
-    @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(xpath = "//android.widget.EditText")
-    public WebElement mobileNumberTextField;
-
-    @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(xpath = "//android.widget.Button")
-    public WebElement continueButton;
-
-    @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(xpath = "//android.widget.EditText")
-    public WebElement passTextField;
-
-    @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='Sign-In']")
-    public WebElement submitButton;
-
     @WithTimeout(time = Constants.DEFAULT_EXTENDED_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
     @AndroidFindBy(id = "web_home_shop_by_department_label")
     public WebElement shopByCategoryBtn;
