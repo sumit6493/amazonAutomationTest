@@ -24,5 +24,6 @@ Hence used only Scenarios with valid and invalid logins.
 - Updated scrolling behaviour for clicking on Add to cart buttons.
 - Added support to take screen shot and save in target directory.
 - Added support to take screenshot and embed with reports
+- Added unique xpath with text function and with ui automator  
 
 
