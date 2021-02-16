@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import static java.time.temporal.ChronoUnit.SECONDS;
 
 public class LoginScreenObjects extends BasePage {
-    public LoginScreenObjects(AppiumDriver driver){
+    public LoginScreenObjects(AppiumDriver driver) {
         super(driver);
     }
 
@@ -22,18 +22,26 @@ public class LoginScreenObjects extends BasePage {
     public WebElement signInButton;
 
     @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(xpath = "//android.widget.EditText")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='ap_email_login']")
     public WebElement mobileNumberTextField;
 
     @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(xpath = "//android.widget.Button")
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='continue']")
     public WebElement continueButton;
 
     @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
-    @AndroidFindBy(xpath = "//android.widget.EditText")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='ap_password']")
     public WebElement passTextField;
 
     @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
     @AndroidFindBy(xpath = "//android.widget.Button[@text='Sign-In']")
     public WebElement submitButton;
+
+    @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
+    @AndroidFindBy(xpath = "//*[@text='Incorrect phone number']")
+    public WebElement incorrectPhoneError;
+
+    @WithTimeout(time = Constants.DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS, chronoUnit = SECONDS)
+    @AndroidFindBy(xpath = "//*[@text='Your password is incorrect']")
+    public WebElement incorrectPasswordError;
 }

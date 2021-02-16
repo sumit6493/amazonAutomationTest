@@ -17,7 +17,7 @@ import java.util.Random;
 import static com.amazon.utils.Constants.*;
 import static com.amazon.utils.Utils.*;
 
-public class HomeScreenSteps extends DriverFactory  {
+public class HomeScreenSteps extends DriverFactory {
 
     String itemName;
     String itemPrice;
@@ -31,12 +31,12 @@ public class HomeScreenSteps extends DriverFactory  {
         loginScreenObjects.onBoardingLogo.isDisplayed();
     }
 
-    @When("^login with valid user credentials$")
-    public void loginWithValidUserID() throws InterruptedException {
+    @When("^user login with valid user credentials$")
+    public void loginWithValidUserID() {
         loginScreenObjects.signInButton.click();
-        waitForElementClickable(driver,loginScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS ).sendKeys(MOBILE_NUMBER);
+        waitForElementClickable(driver, loginScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS).sendKeys(MOBILE_NUMBER);
         loginScreenObjects.continueButton.click();
-        waitForElementClickable(driver,loginScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS ).sendKeys(PASSWORD);
+        waitForElementClickable(driver, loginScreenObjects.passTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS).sendKeys(PASSWORD);
         loginScreenObjects.submitButton.click();
     }
 
@@ -61,10 +61,15 @@ public class HomeScreenSteps extends DriverFactory  {
         homeScreenObjects.itemNames.get(index).click();
     }
 
+    //    scrolling the screen for 10 times until the element is visible.
     @And("^click on Add to cart from product detail page$")
-    public void addToCart(){
-        waitForElementVisibile(driver,homeScreenObjects.favouriteIcon, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS);
-        scrollToBottom(driver);
+    public void addToCart() {
+        waitForElementVisibile(driver, homeScreenObjects.favouriteIcon, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS);
+        for (int i = 0; i <= 10; i++) {
+            if (!homeScreenObjects.checkIfElementExist(driver)) {
+                scrollToBottom(driver);
+            } else break;
+        }
         homeScreenObjects.addToCartBtn.click();
     }
 
@@ -77,5 +82,65 @@ public class HomeScreenSteps extends DriverFactory  {
     public void userCanSeeSameProductInCartPage() {
         Assert.assertEquals("cart Item name is NOT as search result page", homeScreenObjects.cartItemName.getAttribute("content-desc"), itemName);
         Assert.assertEquals("cart Item price is NOT as search result page", homeScreenObjects.cartItemPrice.getText(), itemPrice);
+    }
+
+    @And("^user navigates to Sign In Screen$")
+    public void userNavigatesToSignInScreen() {
+        loginScreenObjects.signInButton.click();
+    }
+
+    @When("^user enter (.*) mobile number$")
+    public void userEnterInvalidMobileNumber(String value) {
+        if (value.equalsIgnoreCase("valid")) {
+            waitForElementClickable(driver, loginScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS).sendKeys(MOBILE_NUMBER);
+        } else
+            waitForElementClickable(driver, loginScreenObjects.mobileNumberTextField, DEFAULT_ELEMENT_TIMEOUT_IN_SECONDS).sendKeys(INVALID_MOBILE_NUMBER);
+    }
+
+    @And("^click on (.*) button$")
+    public void clickOnContinueButton(String button) {
+        if (button.equalsIgnoreCase("continue")) {
+            loginScreenObjects.continueButton.click();
+        } else
+            loginScreenObjects.submitButton.click();
+    }
+
+    @Then("^user can see incorrect phone number error message$")
+    public void userCanSeeIncorrectPhoneNumberErrorMessage() {
+        Assert.assertTrue("Incorrect phone number error message did NOT appear", loginScreenObjects.incorrectPhoneError.isDisplayed());
+    }
+
+    @And("^enters (.*) password$")
+    public void enterPassword(String value) {
+        if (value.equalsIgnoreCase("valid")) {
+            loginScreenObjects.passTextField.sendKeys(PASSWORD);
+        } else
+            loginScreenObjects.passTextField.sendKeys(INVALID_PASSWORD);
+    }
+
+    @Then("^user can see incorrect password error message$")
+    public void userCanSeeIncorrectPasswordErrorMessage() {
+        Assert.assertTrue("Incorrect phone number error message did NOT appear", loginScreenObjects.incorrectPasswordError.isDisplayed());
+    }
+
+    @And("^user selects settings through hamburger menu$")
+    public void userSelectsSettingsThroughHamburgerMenu() {
+        homeScreenObjects.hamburgerIcon.click();
+        homeScreenObjects.settingsLink.click();
+    }
+
+    @And("^user select Sign out through Settings$")
+    public void userSelectSignOutThroughSettings() {
+        homeScreenObjects.signOutBtn.click();
+    }
+
+    @And("^user click on Confirm Sign Out$")
+    public void userClickOnConfirmSignOut() {
+        homeScreenObjects.signOutLink.click();
+    }
+
+    @Then("^User is logged out from app$")
+    public void userIsLoggedOutFromApp() {
+        Assert.assertTrue("onboarding screen did NOT appear after successful login", loginScreenObjects.onBoardingLogo.isDisplayed());
     }
 }

@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
     public AppiumDriver driver;
 
-    public BasePage(AppiumDriver driver){
+    public BasePage(AppiumDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }

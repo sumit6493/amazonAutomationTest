@@ -14,8 +14,8 @@ import java.util.List;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = { "pretty", "html:target/cucumber", "json:target/cucumber/cucumber.json" },
-        features = { "classpath:features" }
+        plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json"},
+        features = {"classpath:features"}
 )
 public class RunCukesTest {
     @AfterClass

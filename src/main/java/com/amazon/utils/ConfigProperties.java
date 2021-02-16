@@ -10,7 +10,7 @@ public class ConfigProperties {
     private static ConfigProperties _instance = null;
     private Properties properties;
 
-    private final String path = System.getProperty("user.dir")+"/src/test/resources/config/test.properties";
+    private final String path = System.getProperty("user.dir") + "/src/test/resources/config/test.properties";
 
     public ConfigProperties() throws RuntimeException {
         BufferedReader reader;
