@@ -28,7 +28,7 @@ public class Hooks {
             byte[] src = ts.getScreenshotAs(OutputType.BYTES);
             File file = ts.getScreenshotAs(OutputType.FILE);
             // To embed the failed cases screenshot with report
-            scn.embed(src, scn.getName());
+            scn.embed(src, "image/png");
             // Save failed screenshots inside target folder
             File screenShotLocation = new File(System.getProperty("user.dir") + "/target/failedCase.png");
             FileUtils.copyFile(file, screenShotLocation);
